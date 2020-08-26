@@ -1,0 +1,27 @@
+<form #addressform="ngForm" (ngSubmit)="addressform.valid ? addAddress() : formIsValid = false" class="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputSurname">Фамилия</label>
+      <input type="text" class="form-control" id="inputSurname" name='surname' [(ngModel)]="addedAddress.surname"
+        #surname="ngModel" required [class.border-red]="surname.invalid && !formIsValid">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputName">Имя</label>
+      <input type="text" class="form-control" id="inputName" name='name' [(ngModel)]="addedAddress.name">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputPatronymic">Отчество</label>
+      <input type="text" class="form-control" id="inputPatronymic" name='patronymic' [(ngModel)]="addedAddress.patronymic">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputPhone">Телефон</label>
+      <input type="tel" class="form-control" id="inputPhone" name='phone' [(ngModel)]="addedAddress.phone"
+        #phone="ngModel" required [class.border-red]="phone.invalid && !formIsValid" [textMask]="{mask: phoneMask}" pattern="\+7\(\d{3}\) \d{3}\-\d{2}-\d{2}">
+    </div>
+    <div class="form-group col-1 flex-bottom">
+      <button type="submit" class="btn btn-success btn-add">+</button>
+    </div>
+  </div>
+</form>
+
+<app-address-table [(addressArray)]="addressArray"></app-address-table>
